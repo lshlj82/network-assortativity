@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Assortativity, live: an interactive network demo</title>
+<title>Network assortativity · 네트워크 동류성 | Network Science demos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=STIX+Two+Text:ital,wght@0,400;1,400;1,600&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
@@ -117,13 +117,22 @@ button.theme-btn:hover{background:var(--panel); color:var(--ink); border-color:v
 button.theme-btn:focus-visible{outline:3px solid var(--assort); outline-offset:2px}
 button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@600&family=Noto+Serif+KR:wght@400&display=swap" rel="stylesheet">
+<style>
+/* Course-wide demo title: the same on every demo page and on the course landing page */
+h1.course-title{font-family:"STIX Two Text","Noto Serif KR",Cambria,"Times New Roman",serif !important;font-weight:600 !important;font-style:normal !important;font-size:clamp(30px,3.6vw,44px) !important;line-height:1.08 !important;letter-spacing:-.01em !important;text-transform:none !important;color:var(--ink) !important;word-break:keep-all}
+h1.course-title .course-title-ko{display:block;font-family:"Noto Serif KR","STIX Two Text",serif;font-weight:400;font-size:.5em;line-height:1.3;letter-spacing:0;color:var(--muted);margin:.3em 0 0}
+/* space above the title, so it starts about 48px (phones: 32px) below the top of the page */
+h1.course-title{margin-top:28px !important}
+@media (max-width:700px){h1.course-title{margin-top:12px !important}}
+</style>
 </head>
 <body>
 <button id="themeBtn" class="theme-btn" type="button" aria-label="Switch to light mode"></button>
 <div class="wrap">
 <header class="top">
   <div>
-    <h1>Assortativity <span class="ko">동류성, 유유상종</span></h1>
+    <h1 class="course-title">Network assortativity<span class="course-title-ko" lang="ko">네트워크 동류성</span></h1>
     <p class="lede">Birds of a feather flock together. Do similar nodes link to each other, or do opposites attract? Rewire a network and watch the assortativity coefficient <var>r</var> respond.</p>
     <p class="credit">Created by <b>Claude Opus 5.5</b> (Anthropic), based on lecture slides by <b>Sang Hoon Lee</b> for an introductory network science course.</p>
   </div>
