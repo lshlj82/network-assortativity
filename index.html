@@ -193,7 +193,7 @@ h1.course-title{margin-top:28px !important}
     <div class="box">
       <div class="plots">
         <figure><canvas id="knnPlot" aria-label="Average neighbour degree versus degree, log-log"></canvas>
-          <figcaption>⟨<var>k</var><sub>nn</sub>(<var>k</var>)⟩ vs <var>k</var>. Rising: assortative. Falling: disassortative.</figcaption></figure>
+          <figcaption>⟨<var>k</var><sub>nn</sub>(<var>k</var>)⟩ vs <var>k</var>. Rising: assortative. Falling: disassortative. Each point averages over the nodes of degree <var>k</var> ≥ 1; isolated nodes have no neighbours and are left out.</figcaption></figure>
         <figure><canvas id="scatPlot" aria-label="Degrees at both ends of every edge"></canvas>
           <figcaption>Degrees at the two ends of every edge. <var>r</var> is the Pearson correlation of this cloud.</figcaption></figure>
       </div>
@@ -488,6 +488,7 @@ function updateDegUI(st){
   $('#statsD').innerHTML=`<span>nodes <b>${D.sim.nodes.length}</b></span><span>edges <b>${st.M}</b></span><span>⟨k⟩ <b>${st.kmean.toFixed(2)}</b></span><span>k<sub>max</sub> <b>${st.kmax}</b></span><span>swaps accepted <b>${D.swaps.toLocaleString()}</b></span><span>MC sweeps <b>${(D.attempts/st.M).toFixed(1)}</b></span>`;
   const ib=$('#inspectBody');
   if(D.sel<0){ib.innerHTML='Add up the degrees of node <var>i</var>\'s neighbours, then divide by how many neighbours it has. Click a node in the network to compute it.';return;}
+  if(!D.deg[D.sel]){ib.innerHTML=`<p>Node ${D.sel} has <var>k<sub>i</sub></var> = 0: no neighbours.</p><div class="nums"><var>k</var><sub>nn</sub>(${D.sel}) is undefined (0/0).</div><p class="small">There is nothing to average, so this node is left out of the ⟨<var>k</var><sub>nn</sub>(<var>k</var>)⟩ plot. Click empty space to deselect.</p>`;return;}
   const i=D.sel,k=D.deg[i],nd=[...D.adj[i]].map(j=>D.deg[j]).sort((a,b)=>b-a),sum=nd.reduce((a,b)=>a+b,0),knn=sum/k;
   const list=nd.length>14?nd.slice(0,14).join(' + ')+' + …':nd.join(' + ');
   const cmp=knn>k*1.15?'Its neighbours are better connected than it is.':knn<k/1.15?'Its neighbours are less connected than it is.':'Its neighbours have about the same degree as it does.';
